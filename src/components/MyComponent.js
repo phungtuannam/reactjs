@@ -19,6 +19,15 @@ class MyComponent extends React.Component {
     })
   }
 
+  handleDeleteUser = (userId) => {
+    let listUserClone = this.state.listUsers
+    listUserClone = listUserClone.filter((item) => item.id !== userId)
+    this.setState({
+      listUsers: listUserClone,
+    })
+    // console.log(listUserClone)
+  }
+
   render() {
     // DRY DON'T REPEAT YOURSELF
     return (
@@ -26,7 +35,10 @@ class MyComponent extends React.Component {
         <div className="a">
           <AddUserInfo handleAddNewUser={this.handleAddNewUser} />
           <br />
-          <DisplayInfo listUsers={this.state.listUsers} />
+          <DisplayInfo
+            listUsers={this.state.listUsers}
+            handleDeleteUser={this.handleDeleteUser}
+          />
         </div>
         <div className="b"></div>
       </>
