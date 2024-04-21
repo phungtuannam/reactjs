@@ -28,7 +28,7 @@ class DisplayInfo extends React.Component {
           </span>
         </div>
         {this.state.isShowListUser && (
-          <div>
+          <>
             {listUsers.map((user) => {
               console.log(user)
               return (
@@ -39,7 +39,7 @@ class DisplayInfo extends React.Component {
                 </div>
               )
             })}
-          </div>
+          </>
         )}
       </div>
     )
