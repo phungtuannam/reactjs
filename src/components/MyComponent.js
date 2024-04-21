@@ -5,16 +5,21 @@ import UserInfo from './UserInfo'
 import DisplayInfo from './DisplayInfo'
 
 class MyComponent extends React.Component {
-  render() {
-    const myArr = [1, 'abv', 's', 'd', 'f']
+  state = {
+    listUsers: [
+      { id: 1, name: 'Nam', age: 20 },
+      { id: 2, name: 'namphung', age: 21 },
+      { id: 3, name: 'namms10', age: 12 },
+    ],
+  }
 
+  render() {
+    // DRY DON'T REPEAT YOURSELF
     return (
       <div>
         <UserInfo />
         <br />
-        <DisplayInfo name="Nam" age="30" />
-        <hr />
-        <DisplayInfo name={'namms10'} age={10} myArr={myArr} />
+        <DisplayInfo listUsers={this.state.listUsers} />
       </div>
     )
   }
