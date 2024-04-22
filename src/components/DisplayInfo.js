@@ -7,6 +7,22 @@ class DisplayInfo extends React.Component {
     isShowListUser: true,
   }
 
+  componentDidMount() {
+    console.log('>>> call me component did mount')
+    setTimeout(() => {
+      document.title = ' test'
+    }, 3000)
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('>>> call me component did update', this.props, prevProps)
+    if (this.props.listUsers !== prevProps.listUsers) {
+      if (this.props.listUsers.length === 5) {
+        alert('me')
+      }
+    }
+  }
+
   handleShowHide = () => {
     this.setState({
       isShowListUser: !this.state.isShowListUser,
@@ -14,6 +30,7 @@ class DisplayInfo extends React.Component {
   }
 
   render() {
+    console.log('call me render')
     const { listUsers } = this.props
     return (
       <div className="display-info-container">
