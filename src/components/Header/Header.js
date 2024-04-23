@@ -21,9 +21,6 @@ function Header() {
             <Link to="/admins" className="nav-link">
               Admin
             </Link>
-            {/* <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Users</Nav.Link>
-            <Nav.Link href="#link">Admin</Nav.Link> */}
           </Nav>
           <Nav>
             <NavDropdown title="Setting" id="basic-nav-dropdown">
