@@ -10,9 +10,30 @@ body {
 
 .app-container {
   .header-container {
-    .navbar-nav {
+    .btn-login {
+      margin-right: 15px;
+      border-radius: 5px;
+      padding: 8px 15px;
+      border: 1px solid #090808;
+      background-color: transparent;
+    }
+
+    .btn-signup {
+      border-radius: 5px;
+      padding: 5px 15px;
+      border: 1px solid #090808;
+      background-color: black;
+      color: white;
+      &:hover {
+        background-color: #2c2b2b;
+      }
+    }
+
+    .navbar {
+      padding-top: 20px;
       z-index: 10;
-      opacity: 0.6;
+      // opacity: 0.6;
+      background-color: rgba(0, 0, 0, 0) !important;
       .nav-link {
         &.active {
           color: #00bfff;
@@ -21,9 +42,46 @@ body {
     }
   }
 
+  .homepage-container {
+    .hompage-content {
+      position: relative;
+      padding: 100px;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .homepage-title {
+      font-size: 50px;
+      font-weight: 600;
+    }
+
+    .homepage-text {
+      font-size: 20px;
+    }
+
+    .homepage-btn {
+      border-radius: 10px;
+      padding: 15px 20px;
+      border: 1px solid #090808;
+      background-color: black;
+      color: white;
+      &:hover {
+        background-color: #2c2b2b;
+      }
+    }
+  }
+
   video {
     position: fixed;
-    bottom: 0;
+    right: 0;
+    bottom: -70px;
     width: 100vw;
+  }
+}
+
+@media (min-width: 1500px) {
+  .container {
+    max-width: 1450px !important;
   }
 }
