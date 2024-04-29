@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { FcPlus } from 'react-icons/fc'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const ModalCreateUser = (props) => {
   // const [show, setShow] = useState(false)
@@ -12,6 +13,7 @@ const ModalCreateUser = (props) => {
     setShow(false)
     setEmail('')
     setPassword('')
+    setUsername('')
     setRole('USER')
     setImage('')
     setPreviewImage('')
@@ -25,15 +27,35 @@ const ModalCreateUser = (props) => {
   const [previewImage, setPreviewImage] = useState('')
 
   const handleUploadImage = (event) => {
-    console.log('upload image', event.target.files[0])
+    // console.log('upload image', event.target.files[0])
     if (event.target.files.length !== 0) {
       setPreviewImage(URL.createObjectURL(event.target.files[0]))
       setImage(event.target.files[0])
     }
   }
 
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+  }
+
   const hanldeSubmitCreateUser = async () => {
-    // alert('me')
+    // validate email
+    const isValidateEmail = validateEmail(email)
+    if (!isValidateEmail) {
+      toast.error('Invalid email')
+      return
+    }
+
+    if (!password) {
+      toast.error('Invalid Password')
+      return
+    }
+
+    // submit date
     const data = new FormData()
     data.append('email', email)
     data.append('password', password)
@@ -42,7 +64,17 @@ const ModalCreateUser = (props) => {
     data.append('userImage', image)
 
     let res = await axios.post('http://localhost:8081/api/v1/participant', data)
-    console.log(res)
+
+    if (res.data && res.data.EC === 0) {
+      toast.success(res.data.EM)
+      handleClose()
+    }
+
+    if (res.data && res.data.EC !== 0) {
+      toast.error(res.data.EM)
+    }
+
+    console.log(res.data)
   }
 
   return (
