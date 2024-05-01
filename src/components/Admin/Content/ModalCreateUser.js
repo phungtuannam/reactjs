@@ -45,11 +45,11 @@ const ModalCreateUser = (props) => {
 
   const hanldeSubmitCreateUser = async () => {
     // validate email
-    // const isValidateEmail = validateEmail(email)
-    // if (!isValidateEmail) {
-    //   toast.error('Invalid email')
-    //   return
-    // }
+    const isValidateEmail = validateEmail(email)
+    if (!isValidateEmail) {
+      toast.error('Invalid email')
+      return
+    }
 
     if (!password) {
       toast.error('Invalid Password')
