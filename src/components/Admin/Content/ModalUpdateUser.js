@@ -5,10 +5,11 @@ import { FcPlus } from 'react-icons/fc'
 import { toast } from 'react-toastify'
 import { postCreateUser } from '../../../services/apiService'
 import _ from 'lodash'
+import { putUpdateUser } from '../../../services/apiService'
 
 const ModalUpdateUser = (props) => {
   // const [show, setShow] = useState(false)
-  const { show, setShow, dataUpdate } = props
+  const { show, setShow, dataUpdate, resetUpdateData } = props
 
   //   console.log(dataUpdate)
 
@@ -20,6 +21,7 @@ const ModalUpdateUser = (props) => {
     setRole('USER')
     setImage('')
     setPreviewImage('')
+    resetUpdateData()
   }
 
   const [email, setEmail] = useState('')
@@ -50,30 +52,17 @@ const ModalUpdateUser = (props) => {
     }
   }
 
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      )
-  }
-
   const hanldeSubmitCreateUser = async () => {
-    // validate email
-    const isValidateEmail = validateEmail(email)
-    if (!isValidateEmail) {
-      toast.error('Invalid email')
-      return
-    }
-
-    if (!password) {
-      toast.error('Invalid Password')
-      return
-    }
-
     // submit data
 
-    let data = await postCreateUser(email, password, username, role, image)
+    let data = await putUpdateUser(
+      dataUpdate.id,
+      email,
+      password,
+      username,
+      role,
+      image
+    )
     if (data && data.EC === 0) {
       toast.success(data.EM)
       handleClose()
