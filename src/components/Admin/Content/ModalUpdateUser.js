@@ -32,7 +32,6 @@ const ModalUpdateUser = (props) => {
   const [previewImage, setPreviewImage] = useState('')
 
   useEffect(() => {
-    console.log('run use effect', dataUpdate)
     if (!_.isEmpty(dataUpdate)) {
       setEmail(dataUpdate.email)
       setUsername(dataUpdate.username)

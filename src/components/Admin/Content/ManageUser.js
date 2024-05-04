@@ -6,14 +6,17 @@ import TableUser from './TableUser'
 import { getAllUser } from '../../../services/apiService'
 import ModalUpdateUser from './ModalUpdateUser'
 import ModalViewUser from './ModalViewUser'
+import ModalDeleteUser from './ModalDeleteUser'
 
 const ManageUser = () => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false)
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false)
   const [showModalViewUser, setShowModalViewUser] = useState(false)
+  const [showModalDeleteUser, setShowModalDeleteUser] = useState(false)
 
   const [dataUpdate, setDataUpdate] = useState({})
   const [listUsers, setListUsers] = useState([])
+  const [dataDelete, setDataDelete] = useState({})
 
   const fetchListUsers = async () => {
     let res = await getAllUser()
@@ -23,18 +26,21 @@ const ManageUser = () => {
   }
 
   const hanldeClickBtn = (user) => {
-    // console.log(user)
     setShowModalUpdateUser(true)
     setDataUpdate(user)
   }
 
   const hanldeClickViewUser = (user) => {
     setShowModalViewUser(true)
-    setDataUpdate(user)
   }
 
   const resetUpdateData = () => {
     setDataUpdate({})
+  }
+
+  const hanldeClickBtnDelete = (user) => {
+    setShowModalDeleteUser(true)
+    setDataDelete(user)
   }
 
   useEffect(() => {
@@ -58,6 +64,7 @@ const ManageUser = () => {
             listUsers={listUsers}
             hanldeClickBtn={hanldeClickBtn}
             hanldeClickViewUser={hanldeClickViewUser}
+            hanldeClickBtnDelete={hanldeClickBtnDelete}
           />
         </div>
         <ModalCreateUser
@@ -77,6 +84,11 @@ const ManageUser = () => {
           setShow={setShowModalViewUser}
           dataUpdate={dataUpdate}
           resetUpdateData={resetUpdateData}
+        />
+        <ModalDeleteUser
+          show={showModalDeleteUser}
+          setShow={setShowModalDeleteUser}
+          dataDelete={dataDelete}
         />
       </div>
     </div>

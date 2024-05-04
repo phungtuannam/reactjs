@@ -1,5 +1,5 @@
 const TableUser = (props) => {
-  const { listUsers, hanldeClickBtn } = props
+  const { listUsers, hanldeClickBtn, hanldeClickBtnDelete } = props
 
   return (
     <>
@@ -35,7 +35,12 @@ const TableUser = (props) => {
                     >
                       Update
                     </button>
-                    <button className="btn btn-danger">Delete</button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => hanldeClickBtnDelete(item)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               )

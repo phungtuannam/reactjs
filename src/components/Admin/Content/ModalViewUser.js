@@ -4,10 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 import _ from 'lodash'
 
 const ModalUpdateUser = (props) => {
-  // const [show, setShow] = useState(false)
   const { show, setShow, dataUpdate, resetUpdateData } = props
-
-  //   console.log(dataUpdate)
 
   const handleClose = () => {
     setShow(false)
@@ -28,7 +25,6 @@ const ModalUpdateUser = (props) => {
   const [previewImage, setPreviewImage] = useState('')
 
   useEffect(() => {
-    console.log('run use effect', dataUpdate)
     if (!_.isEmpty(dataUpdate)) {
       setEmail(dataUpdate.email)
       setUsername(dataUpdate.username)
