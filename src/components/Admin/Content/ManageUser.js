@@ -14,6 +14,7 @@ const ManageUser = () => {
   const [showModalViewUser, setShowModalViewUser] = useState(false)
   const [showModalDeleteUser, setShowModalDeleteUser] = useState(false)
 
+  const [dataViewUser, setDataViewUser] = useState({})
   const [dataUpdate, setDataUpdate] = useState({})
   const [listUsers, setListUsers] = useState([])
   const [dataDelete, setDataDelete] = useState({})
@@ -32,6 +33,7 @@ const ManageUser = () => {
 
   const hanldeClickViewUser = (user) => {
     setShowModalViewUser(true)
+    setDataViewUser(user)
   }
 
   const resetUpdateData = () => {
@@ -82,7 +84,7 @@ const ManageUser = () => {
         <ModalViewUser
           show={showModalViewUser}
           setShow={setShowModalViewUser}
-          dataUpdate={dataUpdate}
+          dataViewUser={dataViewUser}
           resetUpdateData={resetUpdateData}
         />
         <ModalDeleteUser

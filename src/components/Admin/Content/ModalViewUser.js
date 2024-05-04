@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 import _ from 'lodash'
 
 const ModalUpdateUser = (props) => {
-  const { show, setShow, dataUpdate, resetUpdateData } = props
+  const { show, setShow, dataViewUser, resetUpdateData } = props
 
   const handleClose = () => {
     setShow(false)
@@ -25,16 +25,16 @@ const ModalUpdateUser = (props) => {
   const [previewImage, setPreviewImage] = useState('')
 
   useEffect(() => {
-    if (!_.isEmpty(dataUpdate)) {
-      setEmail(dataUpdate.email)
-      setUsername(dataUpdate.username)
-      setRole(dataUpdate.role)
+    if (!_.isEmpty(dataViewUser)) {
+      setEmail(dataViewUser.email)
+      setUsername(dataViewUser.username)
+      setRole(dataViewUser.role)
       setImage('')
-      if (dataUpdate.image) {
-        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`)
+      if (dataViewUser.image) {
+        setPreviewImage(`data:image/jpeg;base64,${dataViewUser.image}`)
       }
     }
-  }, [dataUpdate])
+  }, [dataViewUser])
 
   return (
     <>
