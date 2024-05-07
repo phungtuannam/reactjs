@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { FcPlus } from 'react-icons/fc'
 import { toast } from 'react-toastify'
-import { postCreateUser } from '../../../services/apiService'
 import _ from 'lodash'
 import { putUpdateUser } from '../../../services/apiService'
 
@@ -65,7 +64,7 @@ const ModalUpdateUser = (props) => {
     if (data && data.EC === 0) {
       toast.success(data.EM)
       handleClose()
-      await props.fetchListUsers()
+      await props.fetchListUsersWithPaginate(1)
     }
 
     if (data && data.EC !== 0) {
