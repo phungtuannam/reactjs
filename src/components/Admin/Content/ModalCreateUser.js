@@ -2,13 +2,12 @@ import { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { FcPlus } from 'react-icons/fc'
-import axios from 'axios'
 import { toast } from 'react-toastify'
 import { postCreateUser } from '../../../services/apiService'
 
 const ModalCreateUser = (props) => {
   // const [show, setShow] = useState(false)
-  const { show, setShow } = props
+  const { show, setShow, setCurrentPage } = props
 
   const handleClose = () => {
     setShow(false)
@@ -62,6 +61,8 @@ const ModalCreateUser = (props) => {
     if (data && data.EC === 0) {
       toast.success(data.EM)
       handleClose()
+      setCurrentPage(1)
+
       await props.fetchListUsersWithPaginate(1)
     }
 
